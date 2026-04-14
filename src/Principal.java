@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Principal {
 
@@ -41,6 +43,10 @@ public class Principal {
         System.out.println("APÓS AUMENTO DE 10%");
         System.out.println("=".repeat(100));
         imprimirFuncionarios(funcionarios);
+
+        // 3.5 Agrupar funcionários por função
+        var agrupador = Collectors.groupingBy(Funcionario::getFuncao);
+        Map<String, List<Funcionario>> porFuncao = funcionarios.stream().collect(agrupador);
     }
 
     static void imprimirFuncionarios(List<Funcionario> lista) {
