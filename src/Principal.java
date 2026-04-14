@@ -34,6 +34,13 @@ public class Principal {
         System.out.println("LISTA DE FUNCIONÁRIOS");
         System.out.println("=".repeat(100));
         imprimirFuncionarios(funcionarios);
+
+        // 3.4 Aumento de 10%
+        funcionarios.forEach(f -> f.setSalario(f.getSalario().multiply(new BigDecimal("1.10"))));
+        System.out.println("\n" + "=".repeat(100));
+        System.out.println("APÓS AUMENTO DE 10%");
+        System.out.println("=".repeat(100));
+        imprimirFuncionarios(funcionarios);
     }
 
     static void imprimirFuncionarios(List<Funcionario> lista) {
