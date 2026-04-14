@@ -47,6 +47,16 @@ public class Principal {
         // 3.5 Agrupar funcionários por função
         var agrupador = Collectors.groupingBy(Funcionario::getFuncao);
         Map<String, List<Funcionario>> porFuncao = funcionarios.stream().collect(agrupador);
+
+        // 3.6 Imprimir agrupados por função
+        System.out.println("\n" + "=".repeat(100));
+        System.out.println("FUNCIONÁRIOS AGRUPADOS POR FUNÇÃO");
+        System.out.println("=".repeat(100));
+        porFuncao.forEach((funcao, lista) -> {
+            System.out.println("\n  Função: " + funcao);
+            System.out.println("  " + "-".repeat(90));
+            lista.forEach(f -> System.out.println("    " + formatarFuncionario(f)));
+        });
     }
 
     static void imprimirFuncionarios(List<Funcionario> lista) {
