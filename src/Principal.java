@@ -1,8 +1,11 @@
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -58,16 +61,24 @@ public class Principal {
             lista.forEach(f -> System.out.println("    " + formatarFuncionario(f)));
         });
 
-        // 3.8 Imprimir os funcionários que fazem aniversário no mês 10 e 12.
+        // 3.8 Imprimir os funcionários que fazem aniversário no mês 10 e 12
         System.out.println("\n" + "=".repeat(100));
         System.out.println("ANIVERSARIANTES EM OUTUBRO E DEZEMBRO");
         System.out.println("=".repeat(100));
         funcionarios.stream()
-         .filter(f -> {
-            int mes = f.getDataNascimento().getMonthValue();
-            return mes == 10 || mes == 12;
-         })
-         .forEach(f -> System.out.println("  " + formatarFuncionario(f)));
+                .filter(f -> {
+                    int mes = f.getDataNascimento().getMonthValue();
+                    return mes == 10 || mes == 12;
+                })
+                .forEach(f -> System.out.println("  " + formatarFuncionario(f)));
+
+        // 3.9 Funcionário com maior idade
+        System.out.println("\n" + "=".repeat(100));
+        System.out.println("FUNCIONÁRIO COM MAIOR IDADE");
+        System.out.println("=".repeat(100));
+        Funcionario maisVelho = Collections.min(funcionarios, Comparator.comparing(Pessoa::getDataNascimento));
+        int idade = Period.between(maisVelho.getDataNascimento(), LocalDate.now()).getYears();
+        System.out.printf("  Nome: %-15s Idade: %d anos", maisVelho.getNome(), idade);
     }
 
     static void imprimirFuncionarios(List<Funcionario> lista) {
