@@ -79,6 +79,14 @@ public class Principal {
         Funcionario maisVelho = Collections.min(funcionarios, Comparator.comparing(Pessoa::getDataNascimento));
         int idade = Period.between(maisVelho.getDataNascimento(), LocalDate.now()).getYears();
         System.out.printf("  Nome: %-15s Idade: %d anos", maisVelho.getNome(), idade);
+
+        // 3.10 Imprimir a lista de funcionários por ordem alfabética.
+        System.out.println("\n" + "=".repeat(100));
+        System.out.println("FUNCIONÁRIOS EM ORDEM ALFABÉTICA");
+        System.out.println("=".repeat(100));
+        funcionarios.stream()
+                .sorted(Comparator.comparing(Pessoa::getNome))
+                .forEach(f -> System.out.println("  " + formatarFuncionario(f)));
     }
 
     static void imprimirFuncionarios(List<Funcionario> lista) {
