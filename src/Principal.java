@@ -57,6 +57,17 @@ public class Principal {
             System.out.println("  " + "-".repeat(90));
             lista.forEach(f -> System.out.println("    " + formatarFuncionario(f)));
         });
+
+        // 3.8 Imprimir os funcionários que fazem aniversário no mês 10 e 12.
+        System.out.println("\n" + "=".repeat(100));
+        System.out.println("ANIVERSARIANTES EM OUTUBRO E DEZEMBRO");
+        System.out.println("=".repeat(100));
+        funcionarios.stream()
+         .filter(f -> {
+            int mes = f.getDataNascimento().getMonthValue();
+            return mes == 10 || mes == 12;
+         })
+         .forEach(f -> System.out.println("  " + formatarFuncionario(f)));
     }
 
     static void imprimirFuncionarios(List<Funcionario> lista) {
