@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.Period;
@@ -97,6 +98,19 @@ public class Principal {
             totalSalarios = totalSalarios.add(f.getSalario());
         }
         System.out.println("  Total: R$ " + NUMBER_FORMATTER.format(totalSalarios));
+
+        // 3.12 Salários mínimos por funcionário
+        System.out.println("\n" + "=".repeat(100));
+        System.out.println("SALÁRIOS MÍNIMOS POR FUNCIONÁRIO");
+        System.out.println("=".repeat(100));
+        BigDecimal salarioMinimo = new BigDecimal("1212.00");
+        funcionarios.forEach(f -> {
+            BigDecimal quantosSalarios = f.getSalario().divide(salarioMinimo, 2, RoundingMode.FLOOR);
+            System.out.printf("  %s - %s salários mínimos%n",
+                    f.getNome(), NUMBER_FORMATTER.format(quantosSalarios));
+        });
+
+        System.out.println("\n" + "=".repeat(100));
     }
 
     static void imprimirFuncionarios(List<Funcionario> lista) {
