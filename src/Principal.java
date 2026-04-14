@@ -87,6 +87,16 @@ public class Principal {
         funcionarios.stream()
                 .sorted(Comparator.comparing(Pessoa::getNome))
                 .forEach(f -> System.out.println("  " + formatarFuncionario(f)));
+
+        // 3.11 Imprimir o total dos salários
+        System.out.println("\n" + "=".repeat(100));
+        System.out.println("TOTAL DOS SALÁRIOS");
+        System.out.println("=".repeat(100));
+        BigDecimal totalSalarios = BigDecimal.ZERO;
+        for (Funcionario f : funcionarios) {
+            totalSalarios = totalSalarios.add(f.getSalario());
+        }
+        System.out.println("  Total: R$ " + NUMBER_FORMATTER.format(totalSalarios));
     }
 
     static void imprimirFuncionarios(List<Funcionario> lista) {
